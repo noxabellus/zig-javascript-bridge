@@ -86,10 +86,10 @@ pub fn main() !void {
     defer out_file.close();
     const writer = out_file.writer();
 
-    try writer.writeAll("const ");
+    try writer.writeAll("export default class ");
     try writer.writeAll(args[2]);
     try writer.writeAll(
-        \\ = class {
+        \\ {
         \\  new_handle(value) {
         \\    if (value === null) {
         \\      return 0;
@@ -530,7 +530,7 @@ const builtins = [_][]const u8{
     \\      "handleCount": () => {
     \\        return this._handles.size;
     \\      },
-
+    ,
     \\      "i8ArrayView": (ptr, len) => {
     \\        return this.new_handle(new Int8Array(this.instance.exports.memory.buffer, ptr, len));
     \\      },
